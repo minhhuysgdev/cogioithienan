@@ -12,10 +12,21 @@ export const SITE = {
     "Đơn vị hoạt động trong lĩnh vực xe cơ giới và máy công trình: thi công san lấp mặt bằng, cho thuê xe cuốc, phá dỡ công trình cũ, đục phá bê tông, thu mua xác nhà cũ, lắp đặt cống – ống nước và thi công làm đường.",
   intro:
     "Cơ Giới Thiên Ân xây dựng hình ảnh một đơn vị cơ giới mạnh mẽ, thực tế và đáng tin cậy. Thương hiệu lấy máy móc, tinh thần trách nhiệm và sự chỉn chu trong từng hạng mục làm trọng tâm.",
+  introLead: "Đơn vị hoạt động trong lĩnh vực xe cơ giới và máy công trình.",
+  introServices: [
+    "Thi công san lấp mặt bằng",
+    "Cho thuê xe cuốc, máy công trình",
+    "Phá dỡ công trình cũ",
+    "Đục phá bê tông",
+    "Thu mua xác nhà cũ",
+    "Lắp đặt cống – ống nước",
+    "Thi công làm đường",
+  ],
 } as const;
 
 /** Ảnh web tối ưu — một nguồn, không trùng file */
 export const PHOTOS = {
+  hero: "/media/photos/hero-banner.webp",
   site: "/media/photos/may-cong-truong.webp",
   excavators: "/media/photos/hai-may-cuoc-xanh.webp",
   demolition: "/media/photos/pha-do-hem.webp",
@@ -23,6 +34,7 @@ export const PHOTOS = {
   komatsu: "/media/photos/may-komatsu.webp",
   leveling: "/media/photos/san-lap-mat-bang.webp",
   scrapHouse: "/media/photos/thu-mua-xac-nha-cu.webp",
+  waterPipe: "/media/photos/lap-dat-ong-nuoc.webp",
   project1: "/media/photos/congtrinh-1.webp",
   project2: "/media/photos/congtrinh-2.webp",
   project3: "/media/photos/congtrinh-3.webp",
@@ -41,10 +53,8 @@ export const VIDEOS = {
 export const BRAND = {
   logo: "/media/brand/logo.webp",
   logoPhone: "/media/brand/logo-phone.webp",
-  logoFlat: "/media/brand/logo.webp",
   cover: "/media/brand/cover.webp",
   avatar: "/media/brand/avatar.webp",
-  decal: "/media/brand/decal.webp",
   reel: VIDEOS.reel,
   profilePdf: "/docs/ho-so-nang-luc.pdf",
 } as const;

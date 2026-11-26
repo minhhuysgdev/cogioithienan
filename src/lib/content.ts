@@ -32,8 +32,16 @@ async function fetchOrSeed<T>(query: string, params: Record<string, unknown>, se
   }
 }
 
+function normalizeService(service: Service): Service {
+  return {
+    ...service,
+    highlights: service.highlights ?? [],
+  };
+}
+
 export async function getServices(): Promise<Service[]> {
-  return fetchOrSeed(servicesQuery, {}, SERVICES);
+  const data = await fetchOrSeed(servicesQuery, {}, SERVICES);
+  return data.map(normalizeService);
 }
 
 export async function getService(slug: string): Promise<Service | undefined> {

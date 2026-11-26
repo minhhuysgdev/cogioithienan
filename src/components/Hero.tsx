@@ -11,31 +11,16 @@ export function Hero() {
     <section className="relative isolate min-h-[88svh] overflow-hidden bg-navy text-white md:min-h-[92svh]">
       <div className="absolute inset-0">
         <Image
-          src={PHOTOS.site}
-          alt=""
+          src={PHOTOS.hero}
+          alt="Máy cuốc Cơ Giới Thiên Ân"
           fill
           priority
-          quality={70}
-          className="object-cover opacity-50"
+          quality={78}
+          className="object-cover object-[62%_40%] md:object-[70%_35%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-navy/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-navy/35" />
-      </div>
-
-      <div className="pointer-events-none absolute inset-y-8 right-0 hidden w-[42%] opacity-80 lg:block">
-        <div className="relative h-full overflow-hidden">
-          <Image
-            src={PHOTOS.excavators}
-            alt=""
-            fill
-            priority
-            quality={65}
-            className="object-cover"
-            sizes="42vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-navy/20 to-navy" />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/92 via-navy/70 to-navy/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-navy/40" />
       </div>
 
       <div className="relative container-page flex min-h-[88svh] flex-col justify-center py-20 md:min-h-[92svh] md:py-24">

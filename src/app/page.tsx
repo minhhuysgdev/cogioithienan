@@ -3,9 +3,10 @@ import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { FadeIn } from "@/components/FadeIn";
 import { Hero } from "@/components/Hero";
+import { MediaFrame } from "@/components/MediaFrame";
 import { SectionHeading } from "@/components/SectionHeading";
 import { VideoShowcase } from "@/components/VideoShowcase";
-import { BRAND, PHOTOS, SITE } from "@/lib/constants";
+import { PHOTOS, SITE } from "@/lib/constants";
 import { getServices } from "@/lib/content";
 import { STATS } from "@/lib/seed";
 
@@ -22,18 +23,16 @@ export default async function HomePage() {
             <SectionHeading
               eyebrow="01 / Giới thiệu"
               title={SITE.name}
-              description={SITE.description}
+              description={SITE.introLead}
             />
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">{SITE.intro}</p>
-            <p className="mt-3 text-sm font-semibold text-navy italic">{SITE.slogan}</p>
-            <a
-              href={BRAND.profilePdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex min-h-11 items-center rounded-md border border-line bg-surface px-4 text-sm font-semibold text-navy transition hover:border-brand hover:text-brand"
-            >
-              Tải hồ sơ năng lực (PDF)
-            </a>
+            <ul className="mt-5 max-w-xl space-y-2 text-base leading-relaxed text-muted">
+              {SITE.introServices.map((item) => (
+                <li key={item} className="flex gap-2.5">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </FadeIn>
           <FadeIn delay={0.08}>
             <div className="relative aspect-[16/10] overflow-hidden">
@@ -63,17 +62,13 @@ export default async function HomePage() {
             {services.map((service, i) => (
               <FadeIn key={service.slug} delay={i * 0.04}>
                 <Link href={`/dich-vu#${service.slug}`} className="group block">
-                  <div className="relative mb-4 aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      quality={65}
-                      loading="lazy"
-                      className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width:768px) 100vw, 33vw"
-                    />
-                  </div>
+                  <MediaFrame
+                    src={service.image}
+                    alt={service.title}
+                    className="mb-4 aspect-[4/3]"
+                    quality={70}
+                    sizes="(max-width:768px) 100vw, 33vw"
+                  />
                   <p className="text-xs font-semibold tracking-wide text-brand uppercase">
                     {String(i + 1).padStart(2, "0")}
                   </p>

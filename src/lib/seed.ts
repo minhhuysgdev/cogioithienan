@@ -3,8 +3,10 @@ import { PHOTOS, VIDEOS } from "./constants";
 export type Service = {
   slug: string;
   title: string;
+  shortTitle?: string;
   summary: string;
   description: string;
+  highlights: string[];
   image: string;
 };
 
@@ -42,57 +44,99 @@ export const SERVICES: Service[] = [
   {
     slug: "san-lap-mat-bang",
     title: "Thi công san lấp mặt bằng",
+    shortTitle: "San lấp",
     summary: "San gạt, tạo mặt bằng phục vụ chuẩn bị và triển khai công trình.",
     description:
       "Cơ Giới Thiên Ân thực hiện san gạt, đắp đất và tạo mặt bằng theo cao độ yêu cầu, phục vụ chuẩn bị và triển khai các hạng mục công trình dân dụng, nhà xưởng và hạ tầng.",
+    highlights: [
+      "San gạt, đắp đất theo cao độ yêu cầu",
+      "Phù hợp dân dụng, nhà xưởng, hạ tầng",
+      "Bàn giao mặt bằng sẵn sàng thi công",
+    ],
     image: PHOTOS.leveling,
   },
   {
     slug: "cho-thue-xe-cuoc",
     title: "Cho thuê xe cuốc, máy công trình",
+    shortTitle: "Thuê máy",
     summary: "Máy móc phục vụ nhu cầu thi công theo hạng mục.",
     description:
       "Cho thuê xe cuốc và máy công trình theo ca hoặc theo dự án. Máy được bảo dưỡng định kỳ, có thể kèm vận hành viên để đảm bảo tiến độ và an toàn hiện trường.",
+    highlights: [
+      "Thuê theo ca hoặc theo dự án",
+      "Máy bảo dưỡng định kỳ",
+      "Có thể kèm vận hành viên",
+    ],
     image: PHOTOS.site,
   },
   {
     slug: "dap-pha-nha-cua",
     title: "Đập phá nhà cửa, công trình cũ",
+    shortTitle: "Phá dỡ",
     summary: "Phá dỡ công trình cũ theo phạm vi công việc thống nhất.",
     description:
       "Nhận đập phá nhà cửa và công trình cũ theo phạm vi đã thống nhất. Triển khai kiểm soát an toàn, thu dọn hiện trường và bàn giao mặt bằng sẵn sàng cho hạng mục tiếp theo.",
+    highlights: [
+      "Phá dỡ theo phạm vi đã thống nhất",
+      "Kiểm soát an toàn hiện trường",
+      "Thu dọn và bàn giao mặt bằng",
+    ],
     image: PHOTOS.demolition,
   },
   {
     slug: "duc-pha-be-tong",
     title: "Đục phá bê tông",
+    shortTitle: "Đục bê tông",
     summary: "Hỗ trợ các hạng mục đục phá, tháo dỡ kết cấu bê tông.",
     description:
       "Hỗ trợ đục phá, tháo dỡ kết cấu bê tông bằng thiết bị chuyên dụng. Phù hợp cải tạo, phá dỡ cục bộ và các hạng mục cần kiểm soát rung động tại công trường.",
+    highlights: [
+      "Thiết bị chuyên dụng cho kết cấu cứng",
+      "Phù hợp cải tạo / phá dỡ cục bộ",
+      "Kiểm soát rung động tại công trường",
+    ],
     image: PHOTOS.concrete,
   },
   {
     slug: "thu-mua-xac-nha-cu",
     title: "Thu mua xác nhà cũ",
+    shortTitle: "Thu mua nhà cũ",
     summary: "Tiếp nhận nhu cầu thu mua, xử lý nhà cũ và vật tư thu hồi.",
     description:
       "Tiếp nhận thu mua xác nhà cũ, hỗ trợ tháo dỡ và xử lý vật tư thu hồi theo thỏa thuận minh bạch, giúp chủ đầu tư rút ngắn thời gian chuẩn bị mặt bằng mới.",
+    highlights: [
+      "Thu mua xác nhà cũ minh bạch",
+      "Hỗ trợ tháo dỡ và xử lý vật tư",
+      "Rút ngắn thời gian chuẩn bị mặt bằng",
+    ],
     image: PHOTOS.scrapHouse,
   },
   {
     slug: "lap-dat-cong-ong-nuoc",
     title: "Thi công lắp đặt cống, ống nước",
+    shortTitle: "Cống – ống nước",
     summary: "Thực hiện các hạng mục lắp đặt cống và đường ống nước.",
     description:
       "Thi công lắp đặt cống thoát nước và đường ống nước theo yêu cầu công trình. Đảm bảo độ dốc, mối nối và hoàn trả mặt bằng đúng kỹ thuật.",
-    image: PHOTOS.site,
+    highlights: [
+      "Lắp đặt cống thoát nước và ống nước",
+      "Đảm bảo độ dốc và mối nối kỹ thuật",
+      "Hoàn trả mặt bằng sau thi công",
+    ],
+    image: PHOTOS.waterPipe,
   },
   {
     slug: "thi-cong-lam-duong",
     title: "Thi công làm đường",
+    shortTitle: "Làm đường",
     summary: "Thi công các hạng mục đường theo yêu cầu công trình.",
     description:
       "Nhận thi công các hạng mục đường nội bộ, đường bê tông và đường phục vụ công trình. Phạm vi, khối lượng và tiến độ được trao đổi, thống nhất trước khi triển khai.",
+    highlights: [
+      "Đường nội bộ / đường bê tông",
+      "Thống nhất phạm vi và khối lượng trước",
+      "Triển khai theo tiến độ đã chốt",
+    ],
     image: PHOTOS.excavators,
   },
 ];
