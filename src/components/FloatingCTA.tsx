@@ -1,6 +1,6 @@
 "use client";
 
-import { SITE, telHref, zaloHref } from "@/lib/constants";
+import { SITE, facebookHref, telHref, zaloHref } from "@/lib/constants";
 
 function ZaloIcon({ className }: { className?: string }) {
   return (
@@ -44,9 +44,33 @@ function PhoneIcon({ className }: { className?: string }) {
   );
 }
 
+function FacebookIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden>
+      <circle cx="24" cy="24" r="24" fill="#1877F2" />
+      <path
+        fill="#fff"
+        d="M26.7 38V25.6h3.7l.6-4.1h-4.3v-2.6c0-1.2.3-2 2.1-2h2.3V13.2c-.4-.1-1.8-.2-3.4-.2-3.4 0-5.7 2.1-5.7 5.9v3.3h-3.8v4.1h3.8V38h5.7z"
+      />
+    </svg>
+  );
+}
+
 export function FloatingCTA() {
   return (
     <div className="fixed right-3 bottom-4 z-50 flex flex-col items-center gap-3 md:right-5 md:bottom-6">
+      <a
+        href={facebookHref()}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#1877F2] text-white shadow-lg shadow-navy/30 transition hover:scale-105"
+        aria-label="Facebook Cơ Giới Thiên Ân"
+        title="Facebook"
+      >
+        <FacebookIcon className="h-14 w-14" />
+        <span className="sr-only">Facebook</span>
+      </a>
+
       <a
         href={zaloHref()}
         target="_blank"

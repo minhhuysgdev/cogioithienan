@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
-import { SITE, telHref, zaloHref } from "@/lib/constants";
+import { SITE, facebookHref, telHref, zaloHref } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Liên hệ",
@@ -40,6 +40,19 @@ export default function LienHePage() {
                   className="font-medium text-navy hover:text-brand"
                 >
                   {SITE.hotlineDisplay}
+                </a>
+              </li>
+              <li>
+                <span className="block text-xs font-semibold tracking-wide text-muted uppercase">
+                  Facebook
+                </span>
+                <a
+                  href={facebookHref()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-navy hover:text-brand"
+                >
+                  facebook.com/profile.php?id=61596575926007
                 </a>
               </li>
               <li>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BRAND, NAV, SITE, telHref, zaloHref } from "@/lib/constants";
+import { BRAND, NAV, SITE, facebookHref, telHref, zaloHref } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -58,6 +58,16 @@ export function Footer() {
                 className="text-white/80 hover:text-white"
               >
                 Zalo: {SITE.hotlineDisplay}
+              </a>
+            </li>
+            <li>
+              <a
+                href={facebookHref()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/80 hover:text-white"
+              >
+                Facebook: Cơ Giới Thiên Ân
               </a>
             </li>
             <li>

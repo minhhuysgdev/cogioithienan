@@ -7,6 +7,7 @@ export const SITE = {
   hotlineDisplay: "0969 273 010",
   email: "lienhe@cogioithienan.com",
   zalo: "0969273010",
+  facebook: "https://www.facebook.com/profile.php?id=61596575926007",
   description:
     "Đơn vị hoạt động trong lĩnh vực xe cơ giới và máy công trình: thi công san lấp mặt bằng, cho thuê xe cuốc, phá dỡ công trình cũ, đục phá bê tông, thu mua xác nhà cũ, lắp đặt cống – ống nước và thi công làm đường.",
   intro:
@@ -50,4 +51,8 @@ export function telHref(phone = SITE.hotline) {
 
 export function zaloHref(phone = SITE.zalo) {
   return `https://zalo.me/${phone}`;
+}
+
+export function facebookHref() {
+  return SITE.facebook;
 }
