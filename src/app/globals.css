@@ -50,8 +50,13 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-display), "Montserrat", system-ui, sans-serif;
   letter-spacing: -0.02em;
+}
+
+.font-subtitle {
+  font-family: var(--font-body), "Gilroy", system-ui, sans-serif;
+  font-weight: 500;
 }
 
 .container-page {

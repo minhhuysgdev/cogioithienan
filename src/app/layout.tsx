@@ -1,21 +1,46 @@
 import type { Metadata } from "next";
-import { Archivo, Be_Vietnam_Pro } from "next/font/google";
+import { Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@/components/Analytics";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteChrome } from "@/components/SiteChrome";
 import { BRAND, SITE } from "@/lib/constants";
 import "./globals.css";
 
-const bodyFont = Be_Vietnam_Pro({
-  variable: "--font-body",
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const displayFont = Archivo({
+/** Tiêu đề / display */
+const displayFont = Montserrat({
   variable: "--font-display",
   subsets: ["latin", "vietnamese"],
   weight: ["600", "700", "800"],
+});
+
+/** Phụ đề / body — Gilroy */
+const bodyFont = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Gilroy-Regular.woff",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Gilroy-Medium.woff",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Gilroy-Medium.woff",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Gilroy-Bold.woff",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-body",
+  display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cogioithienan.com";
