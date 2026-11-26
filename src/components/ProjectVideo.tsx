@@ -46,7 +46,7 @@ export function ProjectVideo({
         className={`absolute inset-0 h-full w-full object-cover ${playing ? "opacity-100" : "opacity-0"}`}
         playsInline
         controls={playing}
-        preload="metadata"
+        preload="none"
         poster={poster}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}

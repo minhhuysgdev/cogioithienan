@@ -61,7 +61,16 @@ export async function getProduct(slug: string): Promise<Product | undefined> {
 }
 
 export async function getProjects(): Promise<Project[]> {
-  return fetchOrSeed(projectsQuery, {}, PROJECTS);
+  const data = await fetchOrSeed(projectsQuery, {}, PROJECTS);
+  return data.map((project) => {
+    const seed = PROJECTS.find((item) => item.slug === project.slug);
+    return {
+      ...project,
+      image: project.image || seed?.image || "",
+      video: project.video || seed?.video,
+      poster: project.poster || seed?.poster,
+    };
+  });
 }
 
 export async function getProject(slug: string): Promise<Project | undefined> {

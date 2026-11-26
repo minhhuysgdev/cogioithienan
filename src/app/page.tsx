@@ -6,12 +6,14 @@ import { Hero } from "@/components/Hero";
 import { MediaFrame } from "@/components/MediaFrame";
 import { SectionHeading } from "@/components/SectionHeading";
 import { VideoShowcase } from "@/components/VideoShowcase";
+import { ProjectVideo } from "@/components/ProjectVideo";
 import { PHOTOS, SITE } from "@/lib/constants";
-import { getServices } from "@/lib/content";
+import { getProjects, getServices } from "@/lib/content";
 import { STATS } from "@/lib/seed";
 
 export default async function HomePage() {
-  const services = await getServices();
+  const [services, projects] = await Promise.all([getServices(), getProjects()]);
+  const projectVideos = projects.filter((project) => project.video && project.poster);
 
   return (
     <>
@@ -97,6 +99,50 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      {projectVideos.length ? (
+        <section className="section-pad border-t border-line">
+          <div className="container-page">
+            <FadeIn>
+              <SectionHeading
+                eyebrow="03 / Công trình"
+                title="Video thi công thực tế"
+                description="Máy móc và hạng mục đã triển khai trên hiện trường."
+              />
+            </FadeIn>
+            <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {projectVideos.map((project, i) => (
+                <FadeIn key={project.slug} delay={i * 0.04}>
+                  <article>
+                    <ProjectVideo
+                      src={project.video!}
+                      poster={project.poster!}
+                      title={project.title}
+                      className="mb-4 aspect-[4/3]"
+                    />
+                    <Link href={`/cong-trinh/${project.slug}`} className="group block">
+                      <p className="text-xs font-semibold tracking-wide text-brand uppercase">
+                        {project.location} · {project.year}
+                      </p>
+                      <h3 className="mt-1 font-display text-xl font-bold text-navy group-hover:text-brand">
+                        {project.title}
+                      </h3>
+                    </Link>
+                  </article>
+                </FadeIn>
+              ))}
+            </div>
+            <FadeIn>
+              <Link
+                href="/cong-trinh"
+                className="mt-8 inline-flex min-h-11 items-center text-sm font-semibold text-brand hover:text-navy"
+              >
+                Xem tất cả công trình →
+              </Link>
+            </FadeIn>
+          </div>
+        </section>
+      ) : null}
 
       <VideoShowcase />
 
