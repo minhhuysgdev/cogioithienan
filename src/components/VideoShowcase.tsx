@@ -59,9 +59,6 @@ export function VideoShowcase() {
           <h2 className="font-display mt-2 text-3xl font-bold tracking-tight md:text-4xl">
             Máy móc & hoạt động thực tế
           </h2>
-          <p className="mt-2 text-sm text-white/70 md:text-base">
-            Video chỉ tải khi bạn cuộn tới đây — bấm phát để xem.
-          </p>
         </motion.div>
 
         <div className="relative overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl shadow-black/40">
