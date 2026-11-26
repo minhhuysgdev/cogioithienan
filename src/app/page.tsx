@@ -6,8 +6,9 @@ import { Hero } from "@/components/Hero";
 import { MediaFrame } from "@/components/MediaFrame";
 import { SectionHeading } from "@/components/SectionHeading";
 import { VideoShowcase } from "@/components/VideoShowcase";
+import { MachineCarousel } from "@/components/MachineCarousel";
 import { ProjectVideo } from "@/components/ProjectVideo";
-import { PHOTOS, SITE } from "@/lib/constants";
+import { FLEET, PHOTOS, SITE } from "@/lib/constants";
 import { getProjects, getServices } from "@/lib/content";
 import { STATS } from "@/lib/seed";
 
@@ -87,6 +88,29 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <section className="section-pad overflow-x-hidden border-t border-line">
+        <div className="container-page min-w-0">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="03 / Máy móc"
+              title="Máy móc Thiên Ân"
+              description="Đội xe cuốc và máy công trình sẵn sàng cho thuê và thi công."
+            />
+          </FadeIn>
+          <FadeIn delay={0.06} className="mt-8">
+            <MachineCarousel images={FLEET} intervalMs={3000} />
+          </FadeIn>
+          <FadeIn>
+            <Link
+              href="/san-pham"
+              className="mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-brand hover:text-navy"
+            >
+              Xem sản phẩm cho thuê →
+            </Link>
+          </FadeIn>
+        </div>
+      </section>
+
       <section className="border-y border-line bg-surface">
         <div className="container-page grid grid-cols-2 gap-8 py-12 md:grid-cols-4">
           {STATS.map((stat, i) => (
@@ -105,7 +129,7 @@ export default async function HomePage() {
           <div className="container-page">
             <FadeIn>
               <SectionHeading
-                eyebrow="03 / Công trình"
+                eyebrow="04 / Công trình"
                 title="Video thi công thực tế"
                 description="Máy móc và hạng mục đã triển khai trên hiện trường."
               />

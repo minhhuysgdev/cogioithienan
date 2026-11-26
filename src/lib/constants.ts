@@ -44,6 +44,34 @@ export const PHOTOS = {
   videoPoster3: "/media/posters/project-hem.webp",
 } as const;
 
+export const FLEET = [
+  {
+    src: "/media/photos/fleet-1.webp",
+    alt: "Máy cuốc Komatsu Thiên Ân",
+    title: "Komatsu PC50UU",
+  },
+  {
+    src: "/media/photos/fleet-2.webp",
+    alt: "Máy cuốc mini tại Thảo Điền",
+    title: "Máy cuốc mini · Thảo Điền",
+  },
+  {
+    src: "/media/photos/fleet-3.webp",
+    alt: "Đội máy cuốc Thiên Ân",
+    title: "PC50UU & PC75UU",
+  },
+  {
+    src: "/media/photos/fleet-4.webp",
+    alt: "Máy cuốc xanh tại bãi xe",
+    title: "Máy cuốc công trường",
+  },
+  {
+    src: "/media/photos/fleet-5.webp",
+    alt: "Máy cuốc Komatsu PC50UU",
+    title: "Komatsu PC50UU",
+  },
+] as const;
+
 export const VIDEOS = {
   reel: "/media/videos/reel.mp4",
   project1: "/media/videos/project-1.mp4",
