@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { BRAND, PHOTOS, SITE } from "@/lib/constants";
+import { playVideoFullscreen } from "@/lib/video";
 
 export function VideoShowcase() {
   const reduce = useReducedMotion();
@@ -35,12 +36,18 @@ export function VideoShowcase() {
     if (!shouldLoad || !wantPlay) return;
     const video = videoRef.current;
     if (!video) return;
-    void video.play().then(() => setPlaying(true)).catch(() => undefined);
+    void playVideoFullscreen(video).then((ok) => {
+      if (ok) setPlaying(true);
+    });
   }, [shouldLoad, wantPlay]);
 
   function onPlayClick() {
     setShouldLoad(true);
     setWantPlay(true);
+    const video = videoRef.current;
+    if (video) void playVideoFullscreen(video).then((ok) => {
+      if (ok) setPlaying(true);
+    });
   }
 
   return (
