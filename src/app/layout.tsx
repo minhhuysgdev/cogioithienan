@@ -46,7 +46,7 @@ const bodyFont = localFont({
   fallback: ["system-ui", "sans-serif"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cogioithienan.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cogioithienan.vn";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -71,8 +71,13 @@ export const metadata: Metadata = {
     images: [BRAND.cover],
   },
   icons: {
-    icon: BRAND.avatar,
-    apple: BRAND.avatar,
+    icon: [
+      { url: "/media/brand/icon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/media/brand/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: BRAND.logo, type: "image/webp" },
+    ],
+    apple: [{ url: "/media/brand/icon-180.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/media/brand/favicon.ico",
   },
 };
 

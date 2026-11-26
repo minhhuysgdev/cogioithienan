@@ -1,7 +1,7 @@
 import { BRAND, SITE } from "@/lib/constants";
 
 export function JsonLd() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cogioithienan.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cogioithienan.vn";
 
   const data = {
     "@context": "https://schema.org",
