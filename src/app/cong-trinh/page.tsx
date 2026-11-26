@@ -18,7 +18,7 @@ export default async function CongTrinhPage() {
     <>
       <PageHero
         title="Công trình"
-        description="Hình ảnh và hạng mục tiêu biểu đã triển khai."
+        description="Hình ảnh và video hạng mục tiêu biểu đã triển khai."
       />
       <section className="section-pad">
         <div className="container-page grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -27,12 +27,26 @@ export default async function CongTrinhPage() {
               <Link href={`/cong-trinh/${project.slug}`} className="group block">
                 <div className="relative mb-4 aspect-[4/3] overflow-hidden">
                   <Image
-                    src={project.image}
+                    src={project.poster || project.image}
                     alt={project.title}
                     fill
                     className="object-cover transition duration-500 group-hover:scale-[1.03]"
                     sizes="(max-width:768px) 100vw, 33vw"
                   />
+                  {project.video ? (
+                    <span className="absolute top-3 left-3 rounded bg-navy/80 px-2 py-1 text-[11px] font-semibold tracking-wide text-white uppercase">
+                      Video
+                    </span>
+                  ) : null}
+                  {project.video ? (
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand/95 text-white shadow-lg opacity-95 transition group-hover:scale-105">
+                        <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5 fill-current" aria-hidden>
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </span>
+                    </span>
+                  ) : null}
                 </div>
                 <p className="text-xs font-semibold tracking-wide text-brand uppercase">
                   {project.location} · {project.year}

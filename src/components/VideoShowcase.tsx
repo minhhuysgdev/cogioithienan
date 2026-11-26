@@ -64,7 +64,7 @@ export function VideoShowcase() {
         <div className="relative overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl shadow-black/40">
           <div className="relative aspect-[9/16] w-full max-h-[70vh] sm:mx-auto sm:max-w-md md:aspect-[16/9] md:max-h-none md:max-w-none">
             <Image
-              src={PHOTOS.site1}
+              src={PHOTOS.site}
               alt=""
               fill
               quality={65}
@@ -79,12 +79,11 @@ export function VideoShowcase() {
                 playsInline
                 controls={playing}
                 preload="metadata"
-                poster={PHOTOS.site1}
+                poster={PHOTOS.site}
                 onPlay={() => setPlaying(true)}
                 onPause={() => setPlaying(false)}
               >
                 <source src={BRAND.reel} type="video/mp4" />
-                <source src={BRAND.reelFallback} type="video/mp4" />
               </video>
             ) : null}
 

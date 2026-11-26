@@ -6,11 +6,11 @@ import { Hero } from "@/components/Hero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { VideoShowcase } from "@/components/VideoShowcase";
 import { BRAND, PHOTOS, SITE } from "@/lib/constants";
-import { getProjects, getServices } from "@/lib/content";
+import { getServices } from "@/lib/content";
 import { STATS } from "@/lib/seed";
 
 export default async function HomePage() {
-  const [services, projects] = await Promise.all([getServices(), getProjects()]);
+  const services = await getServices();
 
   return (
     <>
@@ -98,49 +98,6 @@ export default async function HomePage() {
               <p className="mt-1 text-sm text-muted">{stat.label}</p>
             </FadeIn>
           ))}
-        </div>
-      </section>
-
-      <section className="section-pad">
-        <div className="container-page">
-          <FadeIn>
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <SectionHeading
-                eyebrow="03 / Hình ảnh năng lực"
-                title="Công trình & máy móc"
-                description="Ảnh do doanh nghiệp cung cấp, ghi nhận thiết bị cơ giới và bối cảnh công trường."
-              />
-              <Link href="/cong-trinh" className="text-sm font-semibold text-brand hover:underline">
-                Xem tất cả
-              </Link>
-            </div>
-          </FadeIn>
-          <div className="mt-10 grid gap-8 md:grid-cols-3">
-            {projects.slice(0, 3).map((project, i) => (
-              <FadeIn key={project.slug} delay={i * 0.06}>
-                <Link href={`/cong-trinh/${project.slug}`} className="group block">
-                  <div className="relative mb-4 aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      quality={65}
-                      loading="lazy"
-                      className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width:768px) 100vw, 33vw"
-                    />
-                  </div>
-                  <p className="text-xs font-semibold tracking-wide text-brand uppercase">
-                    {project.location} · {project.year}
-                  </p>
-                  <h3 className="mt-1 font-display text-xl font-bold text-navy group-hover:text-brand">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted">{project.summary}</p>
-                </Link>
-              </FadeIn>
-            ))}
-          </div>
         </div>
       </section>
 

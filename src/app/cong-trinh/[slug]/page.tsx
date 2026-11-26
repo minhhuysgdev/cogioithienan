@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
+import { ProjectVideo } from "@/components/ProjectVideo";
 import { getProject, getProjects } from "@/lib/content";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -30,16 +31,26 @@ export default async function ProjectDetailPage({ params }: Props) {
       <PageHero title={project.title} description={`${project.location} · ${project.year}`} />
       <section className="section-pad">
         <div className="container-page grid gap-10 md:grid-cols-2">
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-              sizes="(max-width:768px) 100vw, 50vw"
+          {project.video && project.poster ? (
+            <ProjectVideo
+              src={project.video}
+              poster={project.poster}
+              title={project.title}
+              className="aspect-[4/3]"
               priority
             />
-          </div>
+          ) : (
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover"
+                sizes="(max-width:768px) 100vw, 50vw"
+                priority
+              />
+            </div>
+          )}
           <div>
             <p className="text-base leading-relaxed text-muted">{project.description}</p>
             <Link

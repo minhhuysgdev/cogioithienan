@@ -14,26 +14,39 @@ export const SITE = {
     "Cơ Giới Thiên Ân xây dựng hình ảnh một đơn vị cơ giới mạnh mẽ, thực tế và đáng tin cậy. Thương hiệu lấy máy móc, tinh thần trách nhiệm và sự chỉn chu trong từng hạng mục làm trọng tâm.",
 } as const;
 
+/** Ảnh web tối ưu — một nguồn, không trùng file */
 export const PHOTOS = {
-  site1: "/brand/hosonangluc/clean/may-cong-truong-1.webp",
-  site2: "/brand/hosonangluc/clean/may-cong-truong-2.webp",
-  excavators: "/brand/hosonangluc/clean/hai-may-cuoc-xanh.webp",
-  demolition: "/brand/hosonangluc/clean/pha-do-hem.webp",
-  concrete: "/brand/hosonangluc/clean/duc-pha-be-tong.webp",
-  komatsu: "/brand/hosonangluc/clean/may-komatsu.webp",
+  site: "/media/photos/may-cong-truong.webp",
+  excavators: "/media/photos/hai-may-cuoc-xanh.webp",
+  demolition: "/media/photos/pha-do-hem.webp",
+  concrete: "/media/photos/duc-pha-be-tong.webp",
+  komatsu: "/media/photos/may-komatsu.webp",
+  leveling: "/media/photos/san-lap-mat-bang.webp",
+  scrapHouse: "/media/photos/thu-mua-xac-nha-cu.webp",
+  project1: "/media/photos/congtrinh-1.webp",
+  project2: "/media/photos/congtrinh-2.webp",
+  project3: "/media/photos/congtrinh-3.webp",
+  videoPoster1: "/media/posters/project-1.webp",
+  videoPoster2: "/media/posters/project-2.webp",
+  videoPoster3: "/media/posters/project-3.webp",
+} as const;
+
+export const VIDEOS = {
+  reel: "/media/videos/reel.mp4",
+  project1: "/media/videos/project-1.mp4",
+  project2: "/media/videos/project-2.mp4",
+  project3: "/media/videos/project-3.mp4",
 } as const;
 
 export const BRAND = {
-  logo: "/brand/optimized/logo.webp",
-  logoPhone: "/brand/optimized/logo-phone.webp",
-  logoFlat: "/brand/optimized/logo.webp",
-  cover: "/brand/optimized/cover.webp",
-  avatar: "/brand/optimized/avatar.webp",
-  decal: "/brand/optimized/decal.webp",
-  /** Prefer compressed reel when available; falls back to original. */
-  reel: "/brand/optimized/reel-720.mp4",
-  reelFallback: "/brand/Co_Gioi_Thien_An_Reel_9x16.mp4",
-  profilePdf: "/Co_Gioi_Thien_An_Ho_So_Nang_Luc_Thuong_Hieu.pdf",
+  logo: "/media/brand/logo.webp",
+  logoPhone: "/media/brand/logo-phone.webp",
+  logoFlat: "/media/brand/logo.webp",
+  cover: "/media/brand/cover.webp",
+  avatar: "/media/brand/avatar.webp",
+  decal: "/media/brand/decal.webp",
+  reel: VIDEOS.reel,
+  profilePdf: "/docs/ho-so-nang-luc.pdf",
 } as const;
 
 export const NAV = [

@@ -11,7 +11,7 @@ export function Hero() {
     <section className="relative isolate min-h-[88svh] overflow-hidden bg-navy text-white md:min-h-[92svh]">
       <div className="absolute inset-0">
         <Image
-          src={PHOTOS.site1}
+          src={PHOTOS.site}
           alt=""
           fill
           priority
