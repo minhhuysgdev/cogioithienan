@@ -55,7 +55,7 @@ body {
 }
 
 .font-subtitle {
-  font-family: var(--font-body), "Gilroy", system-ui, sans-serif;
+  font-family: var(--font-body), "SVN-Gilroy", "Gilroy", system-ui, sans-serif;
   font-weight: 500;
 }
 
