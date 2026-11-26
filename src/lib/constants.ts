@@ -33,7 +33,7 @@ export const PHOTOS = {
   concrete: "/media/photos/duc-pha-be-tong.webp",
   komatsu: "/media/photos/may-komatsu.webp",
   leveling: "/media/photos/san-lap-mat-bang.webp",
-  scrapHouse: "/media/photos/thu-mua-xac-nha-cu.webp",
+  scrapHouse: "/media/photos/thu-mua-nha-cu.webp",
   waterPipe: "/media/photos/lap-dat-ong-nuoc.webp",
   project1: "/media/photos/congtrinh-1.webp",
   project2: "/media/photos/congtrinh-2.webp",
