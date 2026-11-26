@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { VideoPlayOverlay } from "@/components/VideoPlayOverlay";
 import { BRAND, PHOTOS, SITE } from "@/lib/constants";
 import { playVideoFullscreen } from "@/lib/video";
 
@@ -13,6 +14,7 @@ export function VideoShowcase() {
   const [shouldLoad, setShouldLoad] = useState(false);
   const [wantPlay, setWantPlay] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -36,18 +38,27 @@ export function VideoShowcase() {
     if (!shouldLoad || !wantPlay) return;
     const video = videoRef.current;
     if (!video) return;
-    void playVideoFullscreen(video).then((ok) => {
-      if (ok) setPlaying(true);
-    });
+    setLoading(true);
+    void playVideoFullscreen(video)
+      .then((ok) => {
+        if (ok) setPlaying(true);
+      })
+      .catch(() => undefined)
+      .finally(() => setLoading(false));
   }, [shouldLoad, wantPlay]);
 
   function onPlayClick() {
+    setLoading(true);
     setShouldLoad(true);
     setWantPlay(true);
     const video = videoRef.current;
-    if (video) void playVideoFullscreen(video).then((ok) => {
-      if (ok) setPlaying(true);
-    });
+    if (!video) return;
+    void playVideoFullscreen(video)
+      .then((ok) => {
+        if (ok) setPlaying(true);
+      })
+      .catch(() => undefined)
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -87,26 +98,25 @@ export function VideoShowcase() {
                 controls={playing}
                 preload="metadata"
                 poster={PHOTOS.site}
-                onPlay={() => setPlaying(true)}
+                onPlay={() => {
+                  setPlaying(true);
+                  setLoading(false);
+                }}
                 onPause={() => setPlaying(false)}
+                onWaiting={() => setLoading(true)}
+                onPlaying={() => setLoading(false)}
               >
                 <source src={BRAND.reel} type="video/mp4" />
               </video>
             ) : null}
 
             {!playing ? (
-              <button
-                type="button"
-                onClick={onPlayClick}
-                className="absolute inset-0 z-10 flex items-center justify-center bg-navy/25 transition hover:bg-navy/35"
-                aria-label="Phát video"
-              >
-                <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand text-white shadow-lg shadow-black/40">
-                  <svg viewBox="0 0 24 24" className="ml-1 h-7 w-7 fill-current" aria-hidden>
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
-              </button>
+              <VideoPlayOverlay
+                loading={loading}
+                label="Phát video"
+                onPlay={onPlayClick}
+                size="lg"
+              />
             ) : null}
 
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-navy/80 to-transparent" />

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { VideoPlayOverlay } from "@/components/VideoPlayOverlay";
 import { playVideoFullscreen } from "@/lib/video";
 
 type ProjectVideoProps = {
@@ -21,12 +22,20 @@ export function ProjectVideo({
 }: ProjectVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function onPlayClick() {
     const video = videoRef.current;
-    if (!video) return;
-    const ok = await playVideoFullscreen(video);
-    if (ok) setPlaying(true);
+    if (!video || loading) return;
+    setLoading(true);
+    try {
+      const ok = await playVideoFullscreen(video);
+      if (ok) setPlaying(true);
+    } catch {
+      /* keep poster + play button */
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -48,26 +57,24 @@ export function ProjectVideo({
         controls={playing}
         preload="none"
         poster={poster}
-        onPlay={() => setPlaying(true)}
+        onPlay={() => {
+          setPlaying(true);
+          setLoading(false);
+        }}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
+        onWaiting={() => setLoading(true)}
+        onPlaying={() => setLoading(false)}
       >
         <source src={src} type="video/mp4" />
       </video>
 
       {!playing ? (
-        <button
-          type="button"
-          onClick={onPlayClick}
-          className="absolute inset-0 z-10 flex items-center justify-center bg-navy/20 transition hover:bg-navy/30"
-          aria-label={`Phát video ${title}`}
-        >
-          <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand text-white shadow-lg shadow-black/30">
-            <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6 fill-current" aria-hidden>
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </span>
-        </button>
+        <VideoPlayOverlay
+          loading={loading}
+          label={`Phát video ${title}`}
+          onPlay={onPlayClick}
+        />
       ) : null}
 
       <span className="pointer-events-none absolute top-3 left-3 z-10 rounded bg-navy/75 px-2 py-1 text-[11px] font-semibold tracking-wide text-white uppercase">
