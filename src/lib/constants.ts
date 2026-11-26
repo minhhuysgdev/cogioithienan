@@ -27,6 +27,7 @@ export const SITE = {
 /** Ảnh web tối ưu — một nguồn, không trùng file */
 export const PHOTOS = {
   hero: "/media/photos/hero-banner.webp",
+  intro: "/media/photos/gioi-thieu.webp",
   site: "/media/photos/may-cong-truong.webp",
   excavators: "/media/photos/hai-may-cuoc-xanh.webp",
   demolition: "/media/photos/pha-do-hem.webp",
@@ -40,14 +41,14 @@ export const PHOTOS = {
   project3: "/media/photos/congtrinh-3.webp",
   videoPoster1: "/media/posters/project-1.webp",
   videoPoster2: "/media/posters/project-2.webp",
-  videoPoster3: "/media/posters/project-3.webp",
+  videoPoster3: "/media/posters/project-hem.webp",
 } as const;
 
 export const VIDEOS = {
   reel: "/media/videos/reel.mp4",
   project1: "/media/videos/project-1.mp4",
   project2: "/media/videos/project-2.mp4",
-  project3: "/media/videos/project-3.mp4",
+  project3: "/media/videos/project-hem.mp4",
 } as const;
 
 export const BRAND = {

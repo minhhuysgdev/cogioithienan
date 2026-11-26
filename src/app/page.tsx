@@ -18,14 +18,14 @@ export default async function HomePage() {
       <Hero />
 
       <section className="section-pad">
-        <div className="container-page grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="container-page grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <FadeIn>
             <SectionHeading
               eyebrow="01 / Giới thiệu"
               title={SITE.name}
               description={SITE.introLead}
             />
-            <ul className="mt-5 max-w-xl space-y-2 text-base leading-relaxed text-muted">
+            <ul className="mt-5 max-w-xl space-y-2.5 text-base leading-relaxed text-muted">
               {SITE.introServices.map((item) => (
                 <li key={item} className="flex gap-2.5">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
@@ -35,15 +35,17 @@ export default async function HomePage() {
             </ul>
           </FadeIn>
           <FadeIn delay={0.08}>
-            <div className="relative aspect-[16/10] overflow-hidden">
-              <Image
-                src={PHOTOS.excavators}
-                alt="Máy cuốc Cơ Giới Thiên Ân"
-                fill
-                quality={70}
-                className="object-cover"
-                sizes="(max-width:1024px) 100vw, 45vw"
-              />
+            <div className="relative mx-auto max-w-md overflow-hidden rounded-2xl bg-surface lg:mx-0 lg:max-w-none">
+              <div className="relative aspect-[3/4]">
+                <Image
+                  src={PHOTOS.intro}
+                  alt="Cơ Giới Thiên Ân – Uy tín, chất lượng, chuyên nghiệp"
+                  fill
+                  quality={82}
+                  className="object-contain object-top"
+                  sizes="(max-width:1024px) 100vw, 45vw"
+                />
+              </div>
             </div>
           </FadeIn>
         </div>
