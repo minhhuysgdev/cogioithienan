@@ -1,14 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { FadeIn } from "@/components/FadeIn";
 import { Hero } from "@/components/Hero";
+import { IntroAutoVideo } from "@/components/IntroAutoVideo";
 import { MediaFrame } from "@/components/MediaFrame";
 import { SectionHeading } from "@/components/SectionHeading";
-import { VideoShowcase } from "@/components/VideoShowcase";
 import { MachineCarousel } from "@/components/MachineCarousel";
 import { ProjectVideo } from "@/components/ProjectVideo";
-import { FLEET, PHOTOS, SITE } from "@/lib/constants";
+import { FLEET, SITE, VIDEOS } from "@/lib/constants";
 import { getProjects, getServices } from "@/lib/content";
 import { STATS } from "@/lib/seed";
 
@@ -38,18 +37,11 @@ export default async function HomePage() {
             </ul>
           </FadeIn>
           <FadeIn delay={0.08}>
-            <div className="relative mx-auto max-w-md overflow-hidden rounded-2xl bg-surface lg:mx-0 lg:max-w-none">
-              <div className="relative aspect-[3/4]">
-                <Image
-                  src={PHOTOS.intro}
-                  alt="Cơ Giới Thiên Ân – Uy tín, chất lượng, chuyên nghiệp"
-                  fill
-                  quality={82}
-                  className="object-contain object-top"
-                  sizes="(max-width:1024px) 100vw, 45vw"
-                />
-              </div>
-            </div>
+            <IntroAutoVideo
+              src={VIDEOS.intro}
+              poster={VIDEOS.introPoster}
+              className="mx-auto w-full max-w-xl lg:mx-0 lg:max-w-none"
+            />
           </FadeIn>
         </div>
       </section>
@@ -167,8 +159,6 @@ export default async function HomePage() {
           </div>
         </section>
       ) : null}
-
-      <VideoShowcase />
 
       <CtaBand />
     </>

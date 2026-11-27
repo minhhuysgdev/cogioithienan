@@ -73,7 +73,8 @@ export const FLEET = [
 ] as const;
 
 export const VIDEOS = {
-  reel: "/media/videos/reel.mp4",
+  intro: "/media/videos/intro.mp4",
+  introPoster: "/media/posters/intro.webp",
   project1: "/media/videos/project-1.mp4",
   project2: "/media/videos/project-2.mp4",
   project3: "/media/videos/project-hem.mp4",
@@ -84,7 +85,6 @@ export const BRAND = {
   logoPhone: "/media/brand/logo-phone.webp",
   cover: "/media/brand/cover.webp",
   avatar: "/media/brand/avatar.webp",
-  reel: VIDEOS.reel,
   profilePdf: "/docs/ho-so-nang-luc.pdf",
 } as const;
 

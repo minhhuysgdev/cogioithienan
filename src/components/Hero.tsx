@@ -55,7 +55,7 @@ export function Hero() {
               Nhắn Zalo
             </a>
             <a
-              href="#video-nang-luc"
+              href="#gioi-thieu"
               className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 px-5 text-sm font-semibold text-white/90 transition hover:bg-white/10"
             >
               Xem video
