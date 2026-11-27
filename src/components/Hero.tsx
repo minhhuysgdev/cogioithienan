@@ -15,7 +15,8 @@ export function Hero() {
           alt="Máy cuốc Cơ Giới Thiên Ân"
           fill
           priority
-          quality={78}
+          fetchPriority="high"
+          quality={70}
           className="object-cover object-[62%_40%] md:object-[70%_35%]"
           sizes="100vw"
         />
@@ -36,7 +37,6 @@ export function Hero() {
             width={96}
             height={96}
             className="mb-5 h-20 w-20 rounded-full bg-white object-cover shadow-xl shadow-black/30 md:h-24 md:w-24"
-            priority
           />
           <p className="mb-3 text-sm font-semibold tracking-[0.2em] text-brand-bright uppercase">
             {SITE.tagline}
