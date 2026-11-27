@@ -1,13 +1,3 @@
-type WebkitVideo = HTMLVideoElement & {
-  webkitEnterFullscreen?: () => void;
-  webkitExitFullscreen?: () => void;
-};
-
-export function preferNativeFullscreen() {
-  if (typeof window === "undefined") return false;
-  return window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
-}
-
 async function waitForCanPlay(video: HTMLVideoElement) {
   if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) return;
   video.load();
@@ -31,29 +21,16 @@ async function waitForCanPlay(video: HTMLVideoElement) {
   });
 }
 
-export async function playVideoFullscreen(video: HTMLVideoElement) {
+/** Phát video ngay trong khung trang — không nhảy fullscreen. */
+export async function playVideoInline(video: HTMLVideoElement) {
+  video.muted = true;
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
   await waitForCanPlay(video);
-
   try {
     await video.play();
+    return true;
   } catch {
     return false;
   }
-
-  if (!preferNativeFullscreen()) return true;
-
-  const wk = video as WebkitVideo;
-  try {
-    if (typeof wk.webkitEnterFullscreen === "function") {
-      wk.webkitEnterFullscreen();
-      return true;
-    }
-    if (video.requestFullscreen) {
-      await video.requestFullscreen();
-      return true;
-    }
-  } catch {
-    /* fallback: video already playing inline */
-  }
-  return true;
 }

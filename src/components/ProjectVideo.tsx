@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { VideoPlayOverlay } from "@/components/VideoPlayOverlay";
-import { playVideoFullscreen } from "@/lib/video";
 
 type ProjectVideoProps = {
   src: string;
@@ -20,26 +19,66 @@ export function ProjectVideo({
   className = "",
   priority = false,
 }: ProjectVideoProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [inView, setInView] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  async function onPlayClick() {
+  const playInline = useCallback(async () => {
     const video = videoRef.current;
-    if (!video || loading) return;
+    if (!video) return false;
+    video.muted = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+    try {
+      await video.play();
+      setPlaying(true);
+      return true;
+    } catch {
+      return false;
+    }
+  }, []);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(Boolean(entry?.isIntersecting));
+      },
+      { threshold: 0.35, rootMargin: "40px 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (inView) {
+      setLoading(true);
+      void playInline().finally(() => setLoading(false));
+      return;
+    }
+
+    video.pause();
+    setPlaying(false);
+  }, [inView, playInline]);
+
+  async function onPlayClick() {
+    if (loading) return;
     setLoading(true);
     try {
-      const ok = await playVideoFullscreen(video);
-      if (ok) setPlaying(true);
-    } catch {
-      /* keep poster + play button */
+      await playInline();
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className={`relative overflow-hidden bg-navy/10 ${className}`}>
+    <div ref={rootRef} className={`relative overflow-hidden bg-navy/10 ${className}`}>
       <Image
         src={poster}
         alt={title}
@@ -53,15 +92,20 @@ export function ProjectVideo({
       <video
         ref={videoRef}
         className={`absolute inset-0 h-full w-full object-cover ${playing ? "opacity-100" : "opacity-0"}`}
+        muted
         playsInline
+        loop
         controls={playing}
-        preload="none"
+        controlsList="nodownload nofullscreen"
+        preload={inView || priority ? "metadata" : "none"}
         poster={poster}
         onPlay={() => {
           setPlaying(true);
           setLoading(false);
         }}
-        onPause={() => setPlaying(false)}
+        onPause={() => {
+          if (!inView) setPlaying(false);
+        }}
         onEnded={() => setPlaying(false)}
         onWaiting={() => setLoading(true)}
         onPlaying={() => setLoading(false)}

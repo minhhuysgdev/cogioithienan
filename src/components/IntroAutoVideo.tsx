@@ -17,59 +17,45 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
   const tryPlay = useCallback(() => {
     const video = videoRef.current;
     if (!video || !video.paused) return;
-
     video.muted = true;
-    video.defaultMuted = true;
     video.volume = 0;
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
-
     void video.play().then(() => setPlaying(true)).catch(() => undefined);
   }, []);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const el = rootRef.current;
+    if (!video || !el) return;
 
-    tryPlay();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          tryPlay();
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.25, rootMargin: "60px 0px" },
+    );
+    observer.observe(el);
 
     const onReady = () => tryPlay();
     video.addEventListener("loadeddata", onReady);
     video.addEventListener("canplay", onReady);
-    video.addEventListener("canplaythrough", onReady);
 
-    const el = rootRef.current;
-    const observer =
-      el &&
-      new IntersectionObserver(
-        ([entry]) => {
-          if (entry?.isIntersecting) tryPlay();
-        },
-        { threshold: 0.15, rootMargin: "80px 0px" },
-      );
-    if (el && observer) observer.observe(el);
-
-    // iOS often unlocks autoplay only after a user gesture
     const unlock = () => tryPlay();
     document.addEventListener("touchstart", unlock, { passive: true, once: true });
-    document.addEventListener("click", unlock, { once: true });
     document.addEventListener("scroll", unlock, { passive: true, once: true });
 
-    const retry = window.setInterval(() => {
-      if (video.paused) tryPlay();
-      else window.clearInterval(retry);
-    }, 800);
-
     return () => {
+      observer.disconnect();
       video.removeEventListener("loadeddata", onReady);
       video.removeEventListener("canplay", onReady);
-      video.removeEventListener("canplaythrough", onReady);
-      observer?.disconnect();
       document.removeEventListener("touchstart", unlock);
-      document.removeEventListener("click", unlock);
       document.removeEventListener("scroll", unlock);
-      window.clearInterval(retry);
     };
   }, [tryPlay]);
 
@@ -98,7 +84,7 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
           autoPlay
           loop
           controls
-          controlsList="nodownload"
+          controlsList="nodownload nofullscreen"
           preload="auto"
           poster={poster}
           onPlaying={() => setPlaying(true)}
