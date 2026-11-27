@@ -42,22 +42,24 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
     <div
       ref={rootRef}
       id="gioi-thieu"
-      className={`relative min-h-[220px] overflow-hidden rounded-2xl bg-navy/10 scroll-mt-24 lg:min-h-0 ${className}`}
+      className={`relative w-full overflow-hidden rounded-2xl bg-navy/10 scroll-mt-24 ${className}`}
     >
-      {/* Keep full 16:9 frame so baked-in logo/text are never cropped */}
-      <div className="relative aspect-video bg-navy/20 lg:h-full lg:min-h-0">
+      {/* Natural 16:9 flow — no absolute fill/cover so baked logo/text stay intact */}
+      <div className="relative aspect-video w-full bg-navy/20">
         <Image
           src={poster}
           alt="Video giới thiệu Cơ Giới Thiên Ân"
           fill
           quality={72}
-          className={`object-contain transition ${ready ? "opacity-0" : "opacity-100"}`}
+          className={`object-contain object-center transition ${ready ? "opacity-0" : "opacity-100"}`}
           sizes="(max-width:1024px) 100vw, 50vw"
         />
         {shouldLoad ? (
           <video
             ref={videoRef}
-            className={`absolute inset-0 h-full w-full object-contain ${ready ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 block h-full w-full object-contain object-center ${
+              ready ? "opacity-100" : "opacity-0"
+            }`}
             muted
             playsInline
             autoPlay

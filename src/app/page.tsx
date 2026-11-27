@@ -20,7 +20,7 @@ export default async function HomePage() {
       <Hero />
 
       <section className="section-pad">
-        <div className="container-page grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
+        <div className="container-page grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <FadeIn>
             <SectionHeading
               eyebrow="01 / Giới thiệu"
@@ -36,12 +36,8 @@ export default async function HomePage() {
               ))}
             </ul>
           </FadeIn>
-          <FadeIn delay={0.08} className="flex h-full min-h-[220px] min-w-0 w-full">
-            <IntroAutoVideo
-              src={VIDEOS.intro}
-              poster={VIDEOS.introPoster}
-              className="h-full w-full flex-1"
-            />
+          <FadeIn delay={0.08} className="min-w-0 w-full">
+            <IntroAutoVideo src={VIDEOS.intro} poster={VIDEOS.introPoster} className="w-full" />
           </FadeIn>
         </div>
       </section>
