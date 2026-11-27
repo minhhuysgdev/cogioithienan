@@ -20,14 +20,14 @@ export default async function HomePage() {
       <Hero />
 
       <section className="section-pad">
-        <div className="container-page grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+        <div className="container-page grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
           <FadeIn>
             <SectionHeading
               eyebrow="01 / Giới thiệu"
               title={SITE.name}
               description={SITE.introLead}
             />
-            <ul className="mt-5 max-w-xl space-y-2.5 text-base leading-relaxed text-muted">
+            <ul className="mt-5 space-y-2.5 text-base leading-relaxed text-muted">
               {SITE.introServices.map((item) => (
                 <li key={item} className="flex gap-2.5">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" aria-hidden />
@@ -36,11 +36,11 @@ export default async function HomePage() {
               ))}
             </ul>
           </FadeIn>
-          <FadeIn delay={0.08}>
+          <FadeIn delay={0.08} className="flex h-full min-h-[220px] min-w-0 w-full">
             <IntroAutoVideo
               src={VIDEOS.intro}
               poster={VIDEOS.introPoster}
-              className="mx-auto w-full max-w-xl lg:mx-0 lg:max-w-none"
+              className="h-full w-full flex-1"
             />
           </FadeIn>
         </div>
