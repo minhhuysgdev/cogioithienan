@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type IntroAutoVideoProps = {
   src: string;
@@ -15,6 +15,14 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
   const [ready, setReady] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(false);
 
+  const tryPlay = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    void video.play().then(() => setReady(true)).catch(() => undefined);
+  }, []);
+
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
@@ -25,7 +33,7 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
           observer.disconnect();
         }
       },
-      { rootMargin: "120px 0px" },
+      { rootMargin: "200px 0px", threshold: 0 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -33,10 +41,8 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
 
   useEffect(() => {
     if (!shouldLoad) return;
-    const video = videoRef.current;
-    if (!video) return;
-    void video.play().then(() => setReady(true)).catch(() => undefined);
-  }, [shouldLoad]);
+    tryPlay();
+  }, [shouldLoad, tryPlay]);
 
   return (
     <div
@@ -44,7 +50,6 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
       id="gioi-thieu"
       className={`relative w-full overflow-hidden rounded-2xl bg-navy/10 scroll-mt-24 ${className}`}
     >
-      {/* Natural 16:9 flow — no absolute fill/cover so baked logo/text stay intact */}
       <div className="relative aspect-video w-full bg-navy/20">
         <Image
           src={poster}
@@ -61,13 +66,16 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
               ready ? "opacity-100" : "opacity-0"
             }`}
             muted
+            defaultMuted
             playsInline
             autoPlay
             loop
             controls
             controlsList="nodownload"
-            preload="metadata"
+            preload="auto"
             poster={poster}
+            onLoadedData={tryPlay}
+            onCanPlay={tryPlay}
             onPlaying={() => setReady(true)}
           >
             <source src={src} type="video/mp4" />
