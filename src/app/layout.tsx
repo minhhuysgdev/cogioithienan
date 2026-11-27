@@ -11,23 +11,20 @@ import "./globals.css";
 const displayFont = Montserrat({
   variable: "--font-display",
   subsets: ["latin", "vietnamese"],
-  weight: ["600", "700", "800"],
+  weight: ["700"],
+  display: "swap",
+  preload: true,
 });
 
 /**
  * Phụ đề / body — Gilroy Việt hóa (SVN-Gilroy).
- * Bản Gilroy quốc tế thiếu dấu tiếng Việt; SVN-Gilroy bổ sung Unicode đầy đủ.
+ * Chỉ giữ 400/600/700 để giảm critical font bytes.
  */
 const bodyFont = localFont({
   src: [
     {
       path: "../../public/fonts/SVN-Gilroy-Regular.otf",
       weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/SVN-Gilroy-Medium.otf",
-      weight: "500",
       style: "normal",
     },
     {
@@ -43,6 +40,7 @@ const bodyFont = localFont({
   ],
   variable: "--font-body",
   display: "swap",
+  preload: true,
   fallback: ["system-ui", "sans-serif"],
 });
 

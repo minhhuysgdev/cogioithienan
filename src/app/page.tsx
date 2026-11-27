@@ -115,7 +115,7 @@ export default async function HomePage() {
         <div className="container-page grid grid-cols-2 gap-8 py-12 md:grid-cols-4">
           {STATS.map((stat, i) => (
             <FadeIn key={stat.label} delay={i * 0.06} className="text-center md:text-left">
-              <p className="font-display text-3xl font-extrabold text-brand md:text-4xl">
+              <p className="font-display text-3xl font-bold text-brand md:text-4xl">
                 {stat.value}
               </p>
               <p className="mt-1 text-sm text-muted">{stat.label}</p>

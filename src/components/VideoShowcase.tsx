@@ -2,13 +2,11 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import { VideoPlayOverlay } from "@/components/VideoPlayOverlay";
 import { BRAND, PHOTOS, SITE } from "@/lib/constants";
 import { playVideoFullscreen } from "@/lib/video";
 
 export function VideoShowcase() {
-  const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -64,20 +62,14 @@ export function VideoShowcase() {
   return (
     <section ref={sectionRef} id="video-nang-luc" className="relative scroll-mt-20 bg-navy text-white">
       <div className="container-page py-10 md:py-14">
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 20 }}
-          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-6 max-w-2xl"
-        >
+        <div className="mb-6 max-w-2xl">
           <p className="text-xs font-semibold tracking-[0.18em] text-brand-bright uppercase">
             Video năng lực
           </p>
           <h2 className="font-display mt-2 text-3xl font-bold tracking-tight md:text-4xl">
             Máy móc & hoạt động thực tế
           </h2>
-        </motion.div>
+        </div>
 
         <div className="relative overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl shadow-black/40">
           <div className="relative aspect-[9/16] w-full max-h-[70vh] sm:mx-auto sm:max-w-md md:aspect-[16/9] md:max-h-none md:max-w-none">

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
 
 export type FleetShot = {
   src: string;
@@ -16,13 +15,21 @@ type MachineCarouselProps = {
 };
 
 export function MachineCarousel({ images, intervalMs = 3000 }: MachineCarouselProps) {
-  const reduce = useReducedMotion();
   const viewportRef = useRef<HTMLDivElement>(null);
   const touchX = useRef<number | null>(null);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [perView, setPerView] = useState(1);
+  const [reduce, setReduce] = useState(false);
   const count = images.length;
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduce(mq.matches);
+    const onChange = () => setReduce(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   useEffect(() => {
     const el = viewportRef.current;

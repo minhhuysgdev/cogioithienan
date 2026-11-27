@@ -56,7 +56,7 @@ body {
 
 .font-subtitle {
   font-family: var(--font-body), "SVN-Gilroy", "Gilroy", system-ui, sans-serif;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .container-page {
@@ -70,6 +70,27 @@ body {
 
 .text-balance {
   text-wrap: balance;
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-enter {
+  animation: hero-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter {
+    animation: none;
+  }
 }
 
 @keyframes floating-call-shake {

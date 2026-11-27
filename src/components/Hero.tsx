@@ -1,12 +1,7 @@
-"use client";
-
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
 import { BRAND, PHOTOS, SITE, telHref, zaloHref } from "@/lib/constants";
 
 export function Hero() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative isolate min-h-[88svh] overflow-hidden bg-navy text-white md:min-h-[92svh]">
       <div className="absolute inset-0">
@@ -25,12 +20,7 @@ export function Hero() {
       </div>
 
       <div className="relative container-page flex min-h-[88svh] flex-col justify-center py-20 md:min-h-[92svh] md:py-24">
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 20 }}
-          animate={reduce ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-2xl"
-        >
+        <div className="hero-enter max-w-2xl">
           <Image
             src={BRAND.logoPhone}
             alt={SITE.name}
@@ -71,7 +61,7 @@ export function Hero() {
               Xem video
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
