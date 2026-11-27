@@ -34,10 +34,10 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition ${
+                className={`rounded-md px-3 py-2 text-lg font-semibold tracking-wide transition ${
                   active
                     ? "bg-white/15 text-white"
-                    : "text-white/75 hover:bg-white/10 hover:text-white"
+                    : "text-white/90 hover:bg-white/10 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -51,13 +51,13 @@ export function Header() {
             href={zaloHref()}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md border border-white/25 px-3 py-2 text-sm font-semibold transition hover:bg-white/10"
+            className="rounded-md border border-white/25 px-3 py-2 text-lg font-semibold transition hover:bg-white/10"
           >
             Zalo
           </a>
           <a
             href={telHref()}
-            className="rounded-md bg-brand px-3 py-2 text-sm font-semibold transition hover:bg-brand-bright"
+            className="rounded-md bg-brand px-3 py-2 text-lg font-semibold transition hover:bg-brand-bright"
           >
             {SITE.hotlineDisplay}
           </a>
@@ -86,7 +86,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-md px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/10"
+                className="rounded-md px-3 py-2.5 text-lg font-semibold tracking-wide text-white hover:bg-white/10"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
@@ -94,7 +94,7 @@ export function Header() {
             ))}
             <a
               href={telHref()}
-              className="mt-1 rounded-md bg-brand px-3 py-2.5 text-center text-sm font-semibold"
+              className="mt-1 rounded-md bg-brand px-3 py-2.5 text-center text-lg font-semibold"
               onClick={() => setOpen(false)}
             >
               Gọi {SITE.hotlineDisplay}
