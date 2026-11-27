@@ -13,6 +13,7 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
   const videoRef = useRef<HTMLVideoElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [showControls, setShowControls] = useState(false);
 
   const tryPlay = useCallback(() => {
     const video = videoRef.current;
@@ -71,22 +72,25 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
           alt="Video giới thiệu Cơ Giới Thiên Ân"
           fill
           quality={72}
-          className={`object-contain object-center transition ${playing ? "opacity-0" : "opacity-100"}`}
+          className={`pointer-events-none object-contain object-center transition ${
+            playing ? "opacity-0" : "opacity-100"
+          }`}
           sizes="(max-width:1024px) 100vw, 50vw"
           priority
         />
         <video
           ref={videoRef}
-          className="absolute inset-0 block h-full w-full object-contain object-center"
+          className="absolute inset-0 block h-full w-full cursor-pointer object-contain object-center"
           src={src}
           muted
           playsInline
           autoPlay
           loop
-          controls
+          controls={showControls}
           controlsList="nodownload nofullscreen"
           preload="auto"
           poster={poster}
+          onClick={() => setShowControls(true)}
           onPlaying={() => setPlaying(true)}
           onPlay={() => setPlaying(true)}
         />

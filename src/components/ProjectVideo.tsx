@@ -24,6 +24,7 @@ export function ProjectVideo({
   const [inView, setInView] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showControls, setShowControls] = useState(false);
 
   const playInline = useCallback(async () => {
     const video = videoRef.current;
@@ -65,11 +66,13 @@ export function ProjectVideo({
 
     video.pause();
     setPlaying(false);
+    setShowControls(false);
   }, [inView, playInline]);
 
   async function onPlayClick() {
     if (loading) return;
     setLoading(true);
+    setShowControls(true);
     try {
       await playInline();
     } finally {
@@ -85,20 +88,25 @@ export function ProjectVideo({
         fill
         priority={priority}
         quality={70}
-        className={`object-cover transition ${playing ? "opacity-0" : "opacity-100"}`}
+        className={`pointer-events-none object-cover transition ${playing ? "opacity-0" : "opacity-100"}`}
         sizes="(max-width:768px) 100vw, 50vw"
       />
 
       <video
         ref={videoRef}
-        className={`absolute inset-0 h-full w-full object-cover ${playing ? "opacity-100" : "opacity-0"}`}
+        className={`absolute inset-0 h-full w-full cursor-pointer object-cover ${
+          playing ? "opacity-100" : "opacity-0"
+        }`}
         muted
         playsInline
         loop
-        controls={playing}
+        controls={showControls}
         controlsList="nodownload nofullscreen"
         preload={inView || priority ? "metadata" : "none"}
         poster={poster}
+        onClick={() => {
+          if (playing) setShowControls(true);
+        }}
         onPlay={() => {
           setPlaying(true);
           setLoading(false);
