@@ -66,7 +66,6 @@ export function IntroAutoVideo({ src, poster, className = "" }: IntroAutoVideoPr
               ready ? "opacity-100" : "opacity-0"
             }`}
             muted
-            defaultMuted
             playsInline
             autoPlay
             loop
