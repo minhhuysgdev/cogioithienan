@@ -15,11 +15,12 @@ export const SITE = {
   introLead: "Đơn vị hoạt động trong lĩnh vực xe cơ giới và máy công trình.",
   introServices: [
     "Thi công san lấp mặt bằng",
-    "Cho thuê xe cuốc, máy công trình",
+    "Đào móng công trình",
+    "Cho thuê xe cơ giới",
     "Phá dỡ công trình cũ",
     "Đục phá bê tông",
     "Thu mua xác nhà cũ",
-    "Lắp đặt cống – ống nước",
+    "Lắp đặt cống thoát nước",
     "Thi công làm đường",
   ],
 } as const;

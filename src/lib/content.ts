@@ -39,15 +39,55 @@ function normalizeService(service: Service): Service {
   };
 }
 
+/** Giữ nội dung pillar SEO từ seed khi CMS chưa có field tương ứng. */
+function mergeWithSeed(service: Service): Service {
+  const seed = SERVICES.find((s) => s.slug === service.slug);
+  if (!seed) return normalizeService(service);
+  return normalizeService({
+    ...seed,
+    ...service,
+    isPillar: seed.isPillar ?? service.isPillar,
+    seoTitle: service.seoTitle ?? seed.seoTitle,
+    seoDescription: service.seoDescription ?? seed.seoDescription,
+    intro: service.intro ?? seed.intro,
+    scopes: service.scopes?.length ? service.scopes : seed.scopes,
+    equipment: service.equipment?.length ? service.equipment : seed.equipment,
+    costFactors: service.costFactors?.length ? service.costFactors : seed.costFactors,
+    steps: service.steps?.length ? service.steps : seed.steps,
+    faqs: service.faqs?.length ? service.faqs : seed.faqs,
+    highlights: service.highlights?.length ? service.highlights : seed.highlights,
+    image: service.image || seed.image,
+    shortTitle: service.shortTitle ?? seed.shortTitle,
+  });
+}
+
 export async function getServices(): Promise<Service[]> {
   const data = await fetchOrSeed(servicesQuery, {}, SERVICES);
-  return data.map(normalizeService);
+  const merged = data.map(mergeWithSeed);
+  const slugs = new Set(merged.map((s) => s.slug));
+  for (const seed of SERVICES) {
+    if (!slugs.has(seed.slug)) merged.push(normalizeService(seed));
+  }
+  const order = new Map(SERVICES.map((s, i) => [s.slug, i]));
+  return merged.sort((a, b) => (order.get(a.slug) ?? 99) - (order.get(b.slug) ?? 99));
 }
 
 export async function getService(slug: string): Promise<Service | undefined> {
   const seed = SERVICES.find((s) => s.slug === slug);
   const data = await fetchOrSeed<Service | null>(serviceBySlugQuery, { slug }, seed ?? null);
-  return data ?? undefined;
+  if (!data && !seed) return undefined;
+  return mergeWithSeed(data ?? seed!);
+}
+
+export async function getPillarServices(): Promise<Service[]> {
+  const services = await getServices();
+  return services.filter((s) => s.isPillar);
+}
+
+export async function getPillarService(slug: string): Promise<Service | undefined> {
+  const service = await getService(slug);
+  if (!service?.isPillar) return undefined;
+  return service;
 }
 
 export async function getProducts(): Promise<Product[]> {

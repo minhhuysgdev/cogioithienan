@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
-import { getPosts, getProducts, getProjects } from "@/lib/content";
+import { getPillarServices, getPosts, getProducts, getProjects } from "@/lib/content";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cogioithienan.vn";
-  const [products, projects, posts] = await Promise.all([
+  const [products, projects, posts, pillars] = await Promise.all([
     getProducts(),
     getProjects(),
     getPosts(),
+    getPillarServices(),
   ]);
 
   const staticRoutes = ["", "/dich-vu", "/san-pham", "/cong-trinh", "/tin-tuc", "/lien-he"].map(
@@ -20,6 +21,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticRoutes,
+    ...pillars.map((s) => ({
+      url: `${siteUrl}/dich-vu/${s.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     ...products.map((p) => ({
       url: `${siteUrl}/san-pham/${p.slug}`,
       lastModified: new Date(),

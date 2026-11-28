@@ -84,9 +84,21 @@ export default async function DichVuPage() {
                       </p>
                     )}
                     <div className="mt-6 flex flex-wrap gap-3">
+                      {service.isPillar ? (
+                        <Link
+                          href={`/dich-vu/${service.slug}`}
+                          className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand px-4 text-sm font-semibold text-white transition hover:bg-brand-bright"
+                        >
+                          Xem chi tiết
+                        </Link>
+                      ) : null}
                       <a
                         href={telHref()}
-                        className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand px-4 text-sm font-semibold text-white transition hover:bg-brand-bright"
+                        className={`inline-flex min-h-11 items-center justify-center rounded-md px-4 text-sm font-semibold transition ${
+                          service.isPillar
+                            ? "border border-line bg-surface text-navy hover:border-brand hover:text-brand"
+                            : "bg-brand text-white hover:bg-brand-bright"
+                        }`}
                       >
                         Gọi {SITE.hotlineDisplay}
                       </a>

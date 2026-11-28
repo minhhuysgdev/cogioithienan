@@ -13,7 +13,11 @@ export function JsonLd() {
     email: SITE.email,
     image: `${siteUrl}${BRAND.logo}`,
     slogan: SITE.slogan,
-    areaServed: "VN",
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "TP. Hồ Chí Minh" },
+      { "@type": "AdministrativeArea", name: "Bình Dương" },
+      { "@type": "AdministrativeArea", name: "Đồng Nai" },
+    ],
     priceRange: "$$",
   };
 

@@ -60,7 +60,10 @@ export default async function HomePage() {
           <div className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service, i) => (
               <FadeIn key={service.slug} delay={i * 0.04}>
-                <Link href={`/dich-vu#${service.slug}`} className="group block">
+                <Link
+                  href={service.isPillar ? `/dich-vu/${service.slug}` : `/dich-vu#${service.slug}`}
+                  className="group block"
+                >
                   <MediaFrame
                     src={service.image}
                     alt={service.title}

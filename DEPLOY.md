@@ -3,7 +3,7 @@
 ## 1. Env trên Vercel
 Copy từ `.env.example` và điền:
 
-- `NEXT_PUBLIC_SITE_URL` — domain production
+- `NEXT_PUBLIC_SITE_URL` — domain production (`https://cogioithienan.vn`)
 - `NEXT_PUBLIC_SANITY_PROJECT_ID` / `NEXT_PUBLIC_SANITY_DATASET`
 - `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`
 - `NEXT_PUBLIC_GA_ID`
@@ -30,5 +30,6 @@ hoặc Import Git repo trên [vercel.com](https://vercel.com) → Framework: Nex
 
 ## 5. Domain & SEO
 - Trỏ domain về Vercel
-- Google Search Console: submit `https://<domain>/sitemap.xml`
+- Domain chính Vercel: `cogioithienan.vn` (www redirect về non-www)
+- Google Search Console: chỉ giữ `https://cogioithienan.vn/sitemap.xml`
 - Gắn GA4 qua `NEXT_PUBLIC_GA_ID`
