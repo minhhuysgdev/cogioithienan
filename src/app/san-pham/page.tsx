@@ -9,6 +9,8 @@ import { getProducts } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Sản phẩm",
   description: "Danh mục máy và thiết bị cơ giới cho thuê tại Thiên Ân.",
+  alternates: { canonical: "/san-pham" },
+  openGraph: { url: "/san-pham" },
 };
 
 export default async function SanPhamPage() {

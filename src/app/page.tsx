@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { FadeIn } from "@/components/FadeIn";
@@ -10,6 +11,11 @@ import { ProjectVideo } from "@/components/ProjectVideo";
 import { FLEET, SITE, VIDEOS } from "@/lib/constants";
 import { getProjects, getServices } from "@/lib/content";
 import { STATS } from "@/lib/seed";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
+};
 
 export default async function HomePage() {
   const [services, projects] = await Promise.all([getServices(), getProjects()]);

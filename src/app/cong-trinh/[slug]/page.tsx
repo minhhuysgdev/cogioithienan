@@ -17,8 +17,20 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProject(slug);
-  if (!project) return { title: "Công trình" };
-  return { title: project.title, description: project.summary };
+  const path = `/cong-trinh/${slug}`;
+  if (!project) {
+    return {
+      title: "Công trình",
+      alternates: { canonical: path },
+      openGraph: { url: path },
+    };
+  }
+  return {
+    title: project.title,
+    description: project.summary,
+    alternates: { canonical: path },
+    openGraph: { url: path },
+  };
 }
 
 export default async function ProjectDetailPage({ params }: Props) {

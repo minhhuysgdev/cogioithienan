@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "Dịch vụ",
   description:
     "Cho thuê máy cuốc, san lấp mặt bằng, phá dỡ – đục bê tông, làm đường và lắp đặt cống tại Thiên Ân.",
+  alternates: { canonical: "/dich-vu" },
+  openGraph: { url: "/dich-vu" },
 };
 
 export default async function DichVuPage() {

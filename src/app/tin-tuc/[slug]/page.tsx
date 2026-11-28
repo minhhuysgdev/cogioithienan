@@ -15,8 +15,20 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPost(slug);
-  if (!post) return { title: "Tin tức" };
-  return { title: post.title, description: post.excerpt };
+  const path = `/tin-tuc/${slug}`;
+  if (!post) {
+    return {
+      title: "Tin tức",
+      alternates: { canonical: path },
+      openGraph: { url: path },
+    };
+  }
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: path },
+    openGraph: { url: path },
+  };
 }
 
 export default async function PostDetailPage({ params }: Props) {

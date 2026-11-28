@@ -6,6 +6,8 @@ import { SITE, facebookHref, telHref, zaloHref } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Liên hệ",
   description: `Liên hệ ${SITE.name} — hotline ${SITE.hotlineDisplay} để nhận tư vấn và báo giá.`,
+  alternates: { canonical: "/lien-he" },
+  openGraph: { url: "/lien-he" },
 };
 
 export default function LienHePage() {

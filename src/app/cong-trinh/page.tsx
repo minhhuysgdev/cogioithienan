@@ -10,6 +10,8 @@ import { getProjects } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Công trình",
   description: "Các công trình san lấp, phá dỡ và thi công cơ giới Thiên Ân đã thực hiện.",
+  alternates: { canonical: "/cong-trinh" },
+  openGraph: { url: "/cong-trinh" },
 };
 
 export default async function CongTrinhPage() {

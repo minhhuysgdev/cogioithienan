@@ -53,10 +53,13 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.shortName}`,
   },
   description: SITE.description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: SITE.name,
     description: SITE.description,
-    url: siteUrl,
+    url: "/",
     siteName: SITE.name,
     images: [{ url: BRAND.cover, width: 1200, height: 630, alt: SITE.name }],
     locale: "vi_VN",

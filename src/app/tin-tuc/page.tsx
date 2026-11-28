@@ -8,6 +8,8 @@ import { getPosts } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Tin tức",
   description: "Kiến thức và cập nhật về thi công cơ giới, thuê máy, san lấp mặt bằng.",
+  alternates: { canonical: "/tin-tuc" },
+  openGraph: { url: "/tin-tuc" },
 };
 
 export default async function TinTucPage() {
